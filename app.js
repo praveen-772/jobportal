@@ -10,6 +10,8 @@ var adminRouter = require('./routes/admin');
 
 var hbs = require('express-handlebars')
 var app = express();
+var db = require('./config/connections');
+var session = require('express-session')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +23,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: "key",cookie: { maxAge:600000 }}));
+
+db.connect((err)=>{
+  if (err) 
+    console.log("Database connection error due to "+err)  
+  else  
+    console.log(" !!! JOB PORTAL DB Connected Successfully !!! ")
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
