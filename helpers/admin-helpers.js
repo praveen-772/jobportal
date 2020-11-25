@@ -19,5 +19,33 @@ module.exports={
                 })
             }
         })
+    },
+    doLogin:(adminData)=>{
+        return new Promise(async(resolve,reject)=>{
+            let loginStatus = false
+            let response={}
+            let adminVerify = await db.get().collection(collection.ADMIN_COLLECTION).findOne({adminname:adminData.adminname})
+            if (adminVerify){
+                bcrypt.compare(adminData.adminpwd,adminVerify.adminpwd).then((status)=>{
+                    if (status){
+                        console.log("Admin Login Success Verified from Database");
+                        response.admin = adminVerify
+                        response.status = true
+                        resolve(response)
+                    }
+                    else{
+                        loginErr = "Login Failed due to Wrong Password"
+                        response.status = false
+                        resolve({status: false,loginErr})
+                    }
+                })
+            }
+            else{
+                loginErr = "Login Failed due to Wrong Username"
+                response.status = false
+                resolve({status:false,loginErr})
+
+            }
+        })
     }
 }

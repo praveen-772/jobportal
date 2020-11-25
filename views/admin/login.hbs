@@ -11,12 +11,13 @@
     <section class="login p-5" style="text-align: center; background-color:linen;">
         <div class="container">
             <h2>Admin Panel Login</h2><br>
-            <form action="/login" method="POST">
-                
+
+            <form action="/admin" method="POST">
+            {{#if loginErr}}
+                <b><p class="error" style="color: red">{{loginErr}}</p></b>
+            {{/if}}
                 <input type="text" placeholder="Admin Username" name="adminname" required><br><br>
-
                 <input type="password" placeholder="Admin Password" name="adminpwd" required><br><br>
-
                 <button type="submit">Login</button>
 
         </div>
