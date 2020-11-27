@@ -7,7 +7,8 @@ const adminHelpers = require('../helpers/admin-helpers')
 /* GET users listing. */
 router.get('/',(req, res, next) =>{
     if (req.session.admin){
-      res.send(" You are already logged in")
+      let adminname = req.session.admin
+      res.render('admin/adminPanel',adminname)
     }
     else{
       adminHelpers.createAccount(req.body);
@@ -21,14 +22,20 @@ router.post('/',(req,res)=>{
 
     if(response.status){
       req.session.admin = response.admin
-      req.session.admin.loggedIn = true
-      res.send("Admin Logged In Successfully")
+      req.session.loggedIn = true
+      res.render('admin/adminPanel',req.body)
     }
     else{
       req.session.loginErr = response.loginErr;
       res.redirect('/admin')
     }
   })
-})
+});
+
+router.get('/logout',(req,res)=>{
+  req.session.destroy();
+  res.redirect('/admin')
+});
+
 
 module.exports = router;
