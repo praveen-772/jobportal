@@ -34,14 +34,14 @@ module.exports={
                         resolve(response)
                     }
                     else{
-                        loginErr = "Login Failed due to Wrong Password"
+                        loginErr = "Login Failed => Wrong Password"
                         response.status = false
                         resolve({status: false,loginErr})
                     }
                 })
             }
             else{
-                loginErr = "Login Failed due to Wrong Username"
+                loginErr = "Login Failed => Wrong Username"
                 response.status = false
                 resolve({status:false,loginErr})
 

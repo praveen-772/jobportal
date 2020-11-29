@@ -8,7 +8,7 @@ const adminHelpers = require('../helpers/admin-helpers')
 router.get('/',(req, res, next) =>{
     if (req.session.admin){
       let adminname = req.session.admin
-      res.render('admin/adminPanel',adminname)
+      res.render('admin/Dashboard',adminname)
     }
     else{
       adminHelpers.createAccount(req.body);
@@ -23,7 +23,7 @@ router.post('/',(req,res)=>{
     if(response.status){
       req.session.admin = response.admin
       req.session.loggedIn = true
-      res.render('admin/adminPanel',req.body)
+      res.render('admin/Dashboard',req.body)
     }
     else{
       req.session.loginErr = response.loginErr;
