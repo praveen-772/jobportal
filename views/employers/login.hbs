@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer's Login</title>
+    <link rel="stylesheet" href="../stylesheets/employerstyle.css" type="text/css">
+</head>
+
+<body>
+    <section class="login p-5" style="text-align: center">
+        <div class="container"
+            style="color: wheat;border:1px solid;border-radius: 25px ; width: max-content; padding: 30px;align-items: center">
+            <h2>Employer's Login</h2><br>
+            <img src="../images/employer.jpg" style="width: 60px;height: 60px;">
+            <h4>Employer</h4>
+
+            <form action="/employers" method="POST">
+                {{#if loginmsg}}
+                <b>
+                    <h4 class="error" style="color: rgb(245, 99, 2)">{{loginmsg}}</h4>
+                </b>
+                {{/if}}
+                <input type="text" placeholder="Employer Username" name="empname" required><br><br>
+                <input type="password" placeholder="Employer Password" name="emppwd" required><br><br>
+                <button type="submit" style="width: 120px;height: 30px;">Login</button>
+
+                <h4>-------------------------------</h4>
+                <a href="employers/empSignup"><div class="btn btn-success">New Employer Sign Up</div></a>
+        </div>
+
+        </form>
+    </section>
+</body>
+
+</html>

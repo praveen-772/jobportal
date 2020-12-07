@@ -3,9 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyparser = require('body-parser');
+const nodemailer = require('nodemailer')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var employerRouter = require('./routes/employers');
 var adminRouter = require('./routes/admin');
 
 var hbs = require('express-handlebars')
@@ -24,6 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: "key",cookie: { maxAge:600000 }}));
+app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.json());
 
 db.connect((err)=>{
   if (err) 
@@ -33,7 +37,7 @@ db.connect((err)=>{
 })
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/employers', employerRouter);
 app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler

@@ -6,9 +6,10 @@ const adminHelpers = require('../helpers/admin-helpers')
 
 /* GET users listing. */
 router.get('/',(req, res, next) =>{
-    if (req.session.admin){
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+     if (req.session.admin){
       let adminname = req.session.admin
-      res.render('admin/Dashboard',adminname)
+      res.render('admin/Dashboard',req.session.admin)
     }
     else{
       adminHelpers.createAccount(req.body);
@@ -33,9 +34,20 @@ router.post('/',(req,res)=>{
 });
 
 router.get('/logout',(req,res)=>{
-  req.session.destroy();
+  req.session.admin = null;
   res.redirect('/admin')
 });
 
+router.get('/employers',(req,res)=>{
+res.render('admin/employers',req.session.admin)
+})
+
+router.get('/jobseekers',(req,res)=>{
+  res.render('admin/jobseekers',req.session.admin)
+})
+
+router.get('/status',(req,res)=>{
+  res.render('admin/status',req.session.admin)
+})
 
 module.exports = router;
