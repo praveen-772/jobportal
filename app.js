@@ -6,14 +6,15 @@ var logger = require('morgan');
 const bodyparser = require('body-parser');
 const nodemailer = require('nodemailer')
 
-var indexRouter = require('./routes/index');
+var userRouter = require('./routes/user');
 var employerRouter = require('./routes/employers');
 var adminRouter = require('./routes/admin');
 
 var hbs = require('express-handlebars')
 var app = express();
 var db = require('./config/connections');
-var session = require('express-session')
+var session = require('express-session');
+var fileUpload = require('express-fileupload')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: "key",cookie: { maxAge:600000 }}));
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
+app.use(fileUpload());
 
 db.connect((err)=>{
   if (err) 
@@ -36,7 +38,7 @@ db.connect((err)=>{
     console.log(" !!! JOB PORTAL DB Connected Successfully !!! ")
 })
 
-app.use('/', indexRouter);
+app.use('/', userRouter);
 app.use('/employers', employerRouter);
 app.use('/admin', adminRouter);
 

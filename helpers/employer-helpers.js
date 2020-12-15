@@ -98,5 +98,22 @@ module.exports={
         resolve()
         })
         
+    },
+    postJob:(jobDetails,callback)=>{
+        console.log(" Employer Helpers Post Job -> Job Details");
+        console.log(jobDetails);
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        console.log(callback);
+        db.get().collection('jobs').insertOne(jobDetails).then((data)=>{
+            console.log(" Data after Database Insertion ");
+            console.log(data);
+            callback(data.ops[0]._id)
+        })
+    },
+    postedjobs:(empname)=>{
+        return new Promise(async(resolve,reject)=>{
+            let jobs = await db.get().collection(collection.JOB_COLLECTION).find({'empname':empname}).toArray()
+            resolve(jobs)
+        })
     }
 }

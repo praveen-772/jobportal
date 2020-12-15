@@ -14,8 +14,8 @@ body {
     padding: 0;
     width: 200px;
     background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
+    position: absolute;
+    height: auto;
     overflow: auto;
     font-size: larger;
   }
@@ -60,4 +60,14 @@ body {
     margin-left: 200px;
     padding: 1px 16px;
     height: 1000px;
+  }
+
+  div.jobform {
+    margin-left: 300px;
+    width: 350px;
+    background-color: wheat
+  }
+
+  #jobtable{
+    background-color: wheat;
   }

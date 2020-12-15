@@ -1,0 +1,36 @@
+<div class="content">
+    <section>
+        <div class="container">
+            <table class="table" id="jobtable">
+                <thead>
+                    <tr>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Job Title</th>
+                        <th scope="col">Skills</th>
+                        <th scope="col">Experience</th>
+                        <th scope="col">Schedule</th>
+                        <th scope="col">Qualification</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Posted on</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each jobs}}
+                    <tr>
+                        <th scope="row">{{this.compName}}</th>
+                        <td>{{this.compLocation}}</td>
+                        <td>{{this.jobTitle}}</td>
+                        <td>{{this.skills}}</td>
+                        <td>{{this.exp}}</td>
+                        <td>{{this.timeSchedule}}</td>
+                        <td>{{this.qualification}}</td>
+                        <td>{{this.desc}}</td>
+                        <td>{{this.date}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
