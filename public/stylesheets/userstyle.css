@@ -1,12 +1,15 @@
 body{
     padding: 0%;
     background-color: #0384fc;
+    background-image: url('https://thumbs.dreamstime.com/b/conceptual-hand-writing-showing-re-hiring-concept-meaning-advertising-employment-workforce-placement-new-job-female-human-wear-161383203.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar{
     padding: 0%;
     font-size: 25px;
-    position: fixed;
+    position: absolute;
     top: 0%;
     width: 100%;
 }

@@ -3,6 +3,7 @@ var express = require('express');
 const adminHelpers = require('../helpers/admin-helpers');
 const employerHelpers = require('../helpers/employer-helpers');
 const bodyparser = require('body-parser');
+const { ObjectId } = require('mongodb');
 var router = express.Router();
 var date;
 var empname;
@@ -117,11 +118,19 @@ router.get('/postedJobs',verifyLogin,(req,res)=>{
     console.log(jobs);
     res.render('employers/postedJobs',{jobs,empname})
   })
-})
+});
 
 router.get('/logout',(req,res)=>{
   req.session.employer = null;
   res.render('employers/login',{loginmsg:"Employer Account Logged Out Successfully"})
+});
+
+router.get('/deleteJob/',verifyLogin,(req,res)=>{
+  jobID = req.query.id;
+  console.log(jobID);
+  employerHelpers.deleteJob(jobID).then(()=>{
+    res.redirect('/employers/postedJobs')
+  })
 })
 
 

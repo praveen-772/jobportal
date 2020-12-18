@@ -1,8 +1,11 @@
 var db = require('../config/connections')
 var collection = require('../config/collections')
+var fs = require('fs');
 const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
 const bodyparser = require('body-parser');
+const { ObjectId } = require('mongodb');
+const { response } = require('express');
 
 
 module.exports={
@@ -114,6 +117,21 @@ module.exports={
         return new Promise(async(resolve,reject)=>{
             let jobs = await db.get().collection(collection.JOB_COLLECTION).find({'empname':empname}).toArray()
             resolve(jobs)
+        })
+    },
+    deleteJob:(jobID)=>{
+        return new Promise((resolve,reject)=>{
+            fs.unlink('./views/employers/employerLogos/'+jobID+'.jpg',(err,done)=>{
+                if (err){
+                    console.log("!!! File Not Found !!!");
+                }
+                else{
+                    console.log("----- Employer Logo Deleted Successfully -----");
+                }
+            })
+            db.get().collection(collection.JOB_COLLECTION).removeOne({_id:ObjectId(jobID)}).then(()=>{
+                resolve()
+            })
         })
     }
 }
