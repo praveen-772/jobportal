@@ -121,7 +121,7 @@ module.exports={
     },
     deleteJob:(jobID)=>{
         return new Promise((resolve,reject)=>{
-            fs.unlink('./views/employers/employerLogos/'+jobID+'.jpg',(err,done)=>{
+            fs.unlink('./public/images/'+jobID+'.jpg',(err,done)=>{
                 if (err){
                     console.log("!!! File Not Found !!!");
                 }

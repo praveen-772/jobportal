@@ -1,4 +1,35 @@
 <div class="content">
-    <h1>Employers Details</h1><br>
-    <h2>Admin can manage employers by editing, blocking or unblocking employers.</h2>
+    <h3>Employers Details</h3><br>
+    <section>
+        <div class="container">
+            <table class="table" id="jobtable">
+                <thead>
+                    <tr>
+                        <th scope="col">Employer ID</th>
+                        <th scope="col">Employer Name</th>
+                        <th scope="col">Employer Email ID</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each employers}}
+                    <tr>
+                        <th scope="row">{{this._id}}</th>
+                        <td>{{this.empname}}</td>
+                        <td>{{this.empemail}}</td>
+                        <td>
+                            <a href=""class="btn btn-danger"
+                            onclick="return confirm('Are you sure to Block this Employer : ')">Block</a>
+                            <a href="deleteEmployer/{{this.empname}}"class="btn btn-danger"
+                            onclick="return confirm('Are you sure to Delete this Employer : {{this.empname}} ')">Delete</a>
+                            {{!-- <a href="" class="btn btn-info">Unblock</a><br> --}}
+
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+
+            </table>
+        </div>
+    </section>
 </div>

@@ -3,13 +3,22 @@ var express = require('express');
 var router = express.Router();
 const {ADMIN_COLLECTION} = require('../config/collections')
 const adminHelpers = require('../helpers/admin-helpers')
+const verifyLogin = (req,res,next)=>{
+  if(req.session.admin){
+    adminname = req.session.admin
+    next();
+  }
+  else{
+    res.redirect('/admin');
+  }
+}
 
 /* GET users listing. */
 router.get('/',(req, res, next) =>{
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
      if (req.session.admin){
-      let adminname = req.session.admin
-      res.render('admin/Dashboard',req.session.admin)
+      adminname = req.session.admin
+      res.render('admin/Dashboard',adminname)
     }
     else{
       adminHelpers.createAccount(req.body);
@@ -38,16 +47,25 @@ router.get('/logout',(req,res)=>{
   res.redirect('/admin')
 });
 
-router.get('/employers',(req,res)=>{
-res.render('admin/employers',req.session.admin)
-})
+router.get('/employers',verifyLogin,(req,res)=>{
+  adminHelpers.listEmployers().then((employers)=>{
+    adminname = adminname.adminname;
+    res.render('admin/employers',{adminname,employers})
+  })
+});
 
-router.get('/jobseekers',(req,res)=>{
-  res.render('admin/jobseekers',req.session.admin)
-})
+router.get('/jobseekers',verifyLogin,(req,res)=>{
+  res.render('admin/jobseekers',adminname)
+});
 
-router.get('/status',(req,res)=>{
-  res.render('admin/status',req.session.admin)
+router.get('/status',verifyLogin,(req,res)=>{
+  res.render('admin/status',adminname)
+});
+
+router.get('/deleteEmployer/:name',verifyLogin,(req,res)=>{
+     adminHelpers.deleteEmployer(req.params).then((response)=>{
+     res.redirect('/admin/employers')
+  })
 })
 
 module.exports = router;

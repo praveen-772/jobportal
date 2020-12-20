@@ -99,7 +99,7 @@ router.post('/postJob',(req,res)=>{
   
   employerHelpers.postJob(req.body,(id)=>{
     let logo = req.files.logoFile;
-    logo.mv('./views/employers/employerLogos/' +id+ '.jpg',(err,done)=>{
+    logo.mv('./public/images/'+id+'.jpg',(err,done)=>{
       if(!err){
         res.render('employers/Dashboard',empname)
       }

@@ -9,11 +9,16 @@ body{
 .navbar{
     padding: 0%;
     font-size: 25px;
-    position: absolute;
+    position: fixed;
     top: 0%;
     width: 100%;
 }
 
 .nav-item{
     padding-right: 20px;
+}
+
+.card-img-top{
+    width: 100px;
+    height: 100px;
 }

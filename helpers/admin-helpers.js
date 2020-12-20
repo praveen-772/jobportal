@@ -1,6 +1,8 @@
 var db = require('../config/connections')
 var collection = require('../config/collections')
 const bcrypt = require('bcrypt')
+const { ObjectId } = require('mongodb')
+const { response } = require('express')
 
 module.exports={
     createAccount:(adminData)=>{
@@ -46,6 +48,22 @@ module.exports={
                 resolve({status:false,loginErr})
 
             }
+        })
+    },
+    listEmployers:()=>{
+        return new Promise((resolve,reject)=>{
+            let employers = db.get().collection(collection.EMPLOYER_COLLECTION).find().toArray()
+            resolve(employers)
+        })
+    },
+    deleteEmployer:(emp)=>{
+        return new Promise(async(resolve,reject)=>{
+            empname = emp.name
+            db.get().collection(collection.EMPLOYER_COLLECTION).deleteOne({'empname':empname})
+            db.get().collection(collection.JOB_COLLECTION).deleteMany({'empname':empname}).then((response)=>{
+                console.log("!!! Employer & Jobs Deletion Completed !!!");
+                resolve(response)
+            })
         })
     }
 }
