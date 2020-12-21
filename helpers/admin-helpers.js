@@ -52,7 +52,8 @@ module.exports={
     },
     listEmployers:()=>{
         return new Promise((resolve,reject)=>{
-            let employers = db.get().collection(collection.EMPLOYER_COLLECTION).find().toArray()
+            status = "unblocked"
+            let employers = db.get().collection(collection.EMPLOYER_COLLECTION).find({'status':status}).toArray()
             resolve(employers)
         })
     },
@@ -62,6 +63,31 @@ module.exports={
             db.get().collection(collection.EMPLOYER_COLLECTION).deleteOne({'empname':empname})
             db.get().collection(collection.JOB_COLLECTION).deleteMany({'empname':empname}).then((response)=>{
                 console.log("!!! Employer & Jobs Deletion Completed !!!");
+                resolve(response)
+            })
+        })
+    },
+    blockEmployer:(emp)=>{
+        return new Promise(async(resolve,reject)=>{
+            empname = emp.name;
+                db.get().collection(collection.EMPLOYER_COLLECTION).updateOne({'empname':empname},{$set:{status:"blocked"}})
+                await db.get().collection(collection.JOB_COLLECTION).updateMany({'empname':empname},{$set:{status:"blocked"}}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    blockedEmployers:()=>{
+        return new Promise(async(resolve,reject)=>{
+            status = "blocked"
+            let employers = await db.get().collection(collection.EMPLOYER_COLLECTION).find({'status':status}).toArray()
+            resolve(employers);
+        })
+    },
+    unblockEmployer:(emp)=>{
+        return new Promise(async(resolve,reject)=>{
+            empname = emp.name;
+                    db.get().collection(collection.EMPLOYER_COLLECTION).updateOne({'empname':empname},{$set:{status:"unblocked"}})
+                await db.get().collection(collection.JOB_COLLECTION).updateMany({'empname':empname},{$set:{status:"unblocked"}}).then((response)=>{
                 resolve(response)
             })
         })

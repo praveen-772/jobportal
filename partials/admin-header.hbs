@@ -13,7 +13,15 @@
                     <a class="nav-link" href="/admin/jobseekers">Job Seekers <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/employers">Employers</a>
+                    <div class="dropdown show">
+                        <a class="btn dropdown-toggle" href="/admin/employers" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="/admin/employers">Employers</a>
+                        </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/admin/blockedEmployers">Blocked Employers</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <div class="dropdown">
@@ -36,9 +44,9 @@
         </div>
     </nav>
     <!-- The sidebar -->
-<div class="sidebar">
-  <a class="active" href="/admin">Dashboard</a>
-  <a href="/admin/status">Usage Status</a>
-  <a href="/admin/logout">Logout</a>
-</div>
+    <div class="sidebar">
+        <a class="active" href="/admin">Dashboard</a>
+        <a href="/admin/status">Usage Status</a>
+        <a href="/admin/logout">Logout</a>
+    </div>
 </header>

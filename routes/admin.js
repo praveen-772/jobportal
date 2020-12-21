@@ -63,8 +63,27 @@ router.get('/status',verifyLogin,(req,res)=>{
 });
 
 router.get('/deleteEmployer/:name',verifyLogin,(req,res)=>{
-     adminHelpers.deleteEmployer(req.params).then((response)=>{
-     res.redirect('/admin/employers')
+  adminHelpers.deleteEmployer(req.params).then((response)=>{
+  res.redirect('/admin/employers')
+  })
+});
+
+router.get('/blockEmployer/:name',verifyLogin,(req,res)=>{
+  adminHelpers.blockEmployer(req.params).then((response)=>{
+  res.redirect('/admin/employers')
+  })
+});
+
+router.get('/unblockEmployer/:name',verifyLogin,(req,res)=>{
+  adminHelpers.unblockEmployer(req.params).then((response)=>{
+  res.redirect('/admin/employers')
+  })
+});
+
+router.get('/blockedEmployers',verifyLogin,(req,res)=>{
+  adminHelpers.blockedEmployers().then((employers)=>{
+    adminname = adminname.adminname;
+    res.render('admin/blockedEmployers',{adminname,employers})
   })
 })
 

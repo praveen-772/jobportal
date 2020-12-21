@@ -32,10 +32,18 @@ module.exports={
             if (empVerify){
                 bcrypt.compare(empData.emppwd,empVerify.emppwd).then((status)=>{
                     if (status){
-                        console.log("Employer Login Success Verified from Database");
-                        response.employer = empVerify
-                        response.status = true
-                        resolve(response)
+                        console.log(empVerify.status);
+                        if (empVerify.status=="unblocked"){
+                            console.log("Employer Login Success Verified from Database");
+                            response.employer = empVerify
+                            response.status = true
+                            resolve(response)
+                        }
+                        else{
+                            loginErr = "!!! Your Account is BLOCKED !!! => Plz Contact Admin"
+                            response.status = false
+                            resolve({status:false,loginErr})
+                        }
                     }
                     else{
                         loginErr = "Login Failed => Wrong Password"
@@ -95,7 +103,7 @@ module.exports={
     otpVerified:(Data)=>{
         return new Promise(async(resolve,reject)=>{
         Data.password = await bcrypt.hash(Data.password,10)
-        db.get().collection(collection.EMPLOYER_COLLECTION).insertOne({empemail:Data.email,empname:Data.username,emppwd:Data.password}).then((data)=>{
+        db.get().collection(collection.EMPLOYER_COLLECTION).insertOne({empemail:Data.email,empname:Data.username,emppwd:Data.password,status:"unblocked"}).then((data)=>{
             resolve(data.ops[0])
         })
         resolve()
@@ -107,6 +115,7 @@ module.exports={
         console.log(jobDetails);
         console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         console.log(callback);
+        jobDetails.status="unblocked"
         db.get().collection('jobs').insertOne(jobDetails).then((data)=>{
             console.log(" Data after Database Insertion ");
             console.log(data);
