@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer')
 const bodyparser = require('body-parser');
 const { ObjectId } = require('mongodb');
 const { response } = require('express');
+const { resolve } = require('path');
 
 
 module.exports={
@@ -139,6 +140,32 @@ module.exports={
                 }
             })
             db.get().collection(collection.JOB_COLLECTION).removeOne({_id:ObjectId(jobID)}).then(()=>{
+                resolve()
+            })
+        })
+    },
+    editJob:(jobID)=>{
+        return new Promise(async(resolve,reject)=>{
+            console.log(" EDIT JOB");
+            let jobDetails = await db.get().collection(collection.JOB_COLLECTION).findOne({_id:ObjectId(jobID)})
+            resolve(jobDetails);
+        })
+    },
+    updateJob:(jobID,jobDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.JOB_COLLECTION).updateOne({_id:ObjectId(jobID)},
+            {
+                $set:{
+                    compName:jobDetails.compName,
+                    compLocation:jobDetails.compLocation,
+                    jobTitle:jobDetails.jobTitle,
+                    timeSchedule:jobDetails.timeSchedule,
+                    skills:jobDetails.skills,
+                    qualification:jobDetails.qualification,
+                    exp:jobDetails.exp,
+                    desc:jobDetails.desc
+                }
+            }).then((response)=>{
                 resolve()
             })
         })

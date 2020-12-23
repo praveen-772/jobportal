@@ -131,7 +131,27 @@ router.get('/deleteJob/',verifyLogin,(req,res)=>{
   employerHelpers.deleteJob(jobID).then(()=>{
     res.redirect('/employers/postedJobs')
   })
-})
+});
 
+router.get('/editJob/:id',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname
+  employerHelpers.editJob(req.params.id).then((jobdetails)=>{
+    console.log(jobdetails);
+    console.log(empname);
+    res.render('employers/editJob',{empname,jobdetails})
+  })
+});
+
+router.post('/editJob/:id',verifyLogin,(req,res)=>{
+  jobID = req.params.id;
+  jobDetails = req.body
+  employerHelpers.updateJob(jobID,jobDetails).then(()=>{
+    let logo = req.files.logoFile;
+    if (logo){
+      logo.mv('./public/images/'+jobID+'.jpg')
+    }
+    res.redirect('/employers/postedJobs')
+  })
+})
 
 module.exports = router;

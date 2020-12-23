@@ -1,0 +1,48 @@
+<div class="content">
+    <section>
+        <div class="container">
+            <div class="jobform">
+                <form action="/employers/editJob/{{jobdetails._id}}" method="POST" enctype="multipart/form-data"
+                    style="padding-left: 50px; padding: 50px">
+                    <h3>Edit a Job</h3>
+                    <input name="compName" type="text" id="compName" placeholder="Company Name"
+                        value="{{jobdetails.compName}}" required><br><br>
+
+                    <input type="text" id="compLocation" name="compLocation" placeholder="Company Location"
+                        value="{{jobdetails.compLocation}}" required><br><br>
+
+                    <input type="text" id="jobTitle" name="jobTitle" placeholder="Job Title"
+                        value="{{jobdetails.jobTitle}}" required><br><br>
+
+                    <input type="text" id="timeSchedule" name="timeSchedule" placeholder="Full Time / Part Time"
+                        value="{{jobdetails.timeSchedule}}" required><br><br>
+
+                    <img src="/images/{{jobdetails._id}}.jpg" alt="Employer Logo" id="imgView" style="width: 75px;height: 75px">
+                    <input type="file" id="logoFile" name="logoFile" onchange="viewImage(event)"> <br><br>
+
+                    <input type="text" id="skills" name="skills" placeholder="Skills Needed"
+                        value="{{jobdetails.skills}}" required><br><br>
+
+                    <input type="text" id="qualification" name="qualification" placeholder="Qualification"
+                        value="{{jobdetails.qualification}}" required><br><br>
+
+                    <input type="text" id="exp" name="exp" placeholder="Experience Required" value="{{jobdetails.exp}}"
+                        required><br><br>
+
+                    <input type="text" id="desc" name="desc" placeholder="Description"
+                        style="width: 250px; height: 100px" value="{{jobdetails.desc}}" required><br><br>
+
+                    <button type="submit" class="btn btn-success">Update Job</button>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    function viewImage(event) {
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>

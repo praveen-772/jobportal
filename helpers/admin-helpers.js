@@ -1,5 +1,6 @@
 var db = require('../config/connections')
 var collection = require('../config/collections')
+var fs = require('fs');
 const bcrypt = require('bcrypt')
 const { ObjectId } = require('mongodb')
 const { response } = require('express')
@@ -60,8 +61,25 @@ module.exports={
     deleteEmployer:(emp)=>{
         return new Promise(async(resolve,reject)=>{
             empname = emp.name
+            console.log(empname);
+            let jobs = await db.get().collection(collection.JOB_COLLECTION).find({'empname':empname}).toArray()
+            console.log("++++++++++++++++++++++++");
+            console.log(jobs);
+            console.log("++++++++++++++++++++++++");
+            console.log(jobs.length);
+            for(i=0;i<jobs.length;i++){
+                jobID = jobs[i]._id;
+                fs.unlink('./public/images/'+jobID+'.jpg',(err,done)=>{
+                    if (err){
+                        console.log("!!! File Not Found !!!");
+                    }
+                    else{
+                        console.log("----- Employer Logo Deleted Successfully -----");
+                    }
+                })
+            }
             db.get().collection(collection.EMPLOYER_COLLECTION).deleteOne({'empname':empname})
-            db.get().collection(collection.JOB_COLLECTION).deleteMany({'empname':empname}).then((response)=>{
+            await db.get().collection(collection.JOB_COLLECTION).deleteMany({'empname':empname}).then((response)=>{
                 console.log("!!! Employer & Jobs Deletion Completed !!!");
                 resolve(response)
             })

@@ -6,8 +6,8 @@ const bodyparser = require('body-parser')
 module.exports={
     allJobs:()=>{
         return new Promise(async(resolve,reject)=>{
-            let jobs = await db.get().collection(collection.JOB_COLLECTION).find().toArray();
-            console.log(jobs);
+            status = "unblocked"
+            let jobs = await db.get().collection(collection.JOB_COLLECTION).find({'status':status}).toArray();
             resolve(jobs)
         })
     }
