@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet" href="/stylesheets/nostyle.css" type="text/css">
+</head>
+
+<body>
+    <section class="login p-5" style="text-align: center">
+        <div class="container"
+            style="color:black;border-color: blue;border:2px solid;border-radius: 40px ; width: 50%;height: 550px;padding: 5px;align-items: center">
+            <h2>Login to User Account</h2><br>
+            <img src="/images/user.jpg" style="width: 150px;height: 100px;">
+            <h4>If you have an Account with us, please log in</h4>
+
+            <form action="/login" method="POST">
+                {{#if loginmsg}}
+                <b>
+                    <h4 class="error" style="color: rgb(245, 99, 2)">{{loginmsg}}</h4>
+                </b>
+                {{/if}}
+                <input type="email" placeholder="User Email ID *" name="userEmail" required><br><br>
+                <input type="password" placeholder="User Password *" name="emppwd" required><br><br>
+                <div>
+                    <div>
+                        <button type="submit" style="width: 120px;height: 30px;float: left">Login</button>
+                    </div>
+                    <div>
+                        <a href="/userSignup" style="float: right">New User? Create An Account</a>
+                    </div>
+                </div><br><br>
+                <div style="border-color: blue;border: 2px solid; border-radius:40px;">
+                    <a href="" style="font-size: 20px">Sign in with Mobile Number</a>
+                </div><br>
+                <div style="border-color: blue;border: 2px solid; border-radius:40px;">
+                    <a href="" style="font-size: 20px">Sign in with Google</a>
+                </div><br>
+                <div style="border-color: blue;border: 2px solid; border-radius:40px;">
+                    <a href="" style="font-size: 20px">Sign in with Facebook</a>
+                </div>
+            </form>
+        </div>
+        
+    </section>
+</body>
+
+</html>

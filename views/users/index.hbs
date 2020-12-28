@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Job Portal</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="../stylesheets/userstyle.css" type="text/css">
@@ -29,14 +29,13 @@
         <a class="nav-link" target="_blank" href="/employers"><button class="btn btn-primary">Post a Job</button></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" target="_blank" href="/"><button class="btn btn-secondary">Login / Sign Up</button></a>
+        <a class="nav-link" target="_blank" href="/login"><button class="btn btn-secondary">Login / Sign Up</button></a>
       </li>
     </ul>
   </nav>
 </head>
 
 <body>
-
   <section>
     <div class="container-fluid mt-5 ml-5 pl-5">
       <div class="row">
@@ -73,6 +72,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+    <script>
+     $(function () {
+  $('.example-popover').popover({
+    container: 'button'
+  })
+})
+    </script>
 </body>
 
 </html>

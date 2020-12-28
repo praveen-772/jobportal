@@ -1,0 +1,23 @@
+body {
+    padding: 10px;
+    font:  "Arial", Helvetica, Lucida Grande , sans-serif;
+    /* background: white */
+    background-image: url('https://equitystaffing.com/uploads/hero/Job-Seekers-Header3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  
+  
+ 
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 170px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+
+  div.container{
+      background-color: wheat;
+  }
