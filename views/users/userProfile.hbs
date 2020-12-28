@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/stylesheets/nostyle.css" type="text/css">
+</head>
+
+<body>
+    <section class="login p-5" style="text-align: center">
+        <div class="container"
+            style="color:black;border:1px solid;border-radius: 25px ; width: max-content; padding: 30px;align-items: center">
+            <h2>User Profile Details</h2><br>
+
+            <form action="/userProfile" method="POST" enctype="multipart/form-data">
+                <input type="text" placeholder="Enter your Full Name" name="fullName" required><br style="line-height: 50px">
+                <input type="text" placeholder="Nationality" name="nationality" required><br style="line-height: 50px">
+                <input type="text" placeholder="Date of Birth" name="dob" required><br style="line-height: 50px">
+                <input type="text" placeholder="Highest Education" name="qualification" required><br style="line-height: 50px">
+                <input type="text" placeholder="Career Level" name="careerLevel" required><br style="line-height: 50px">
+                <input type="text" placeholder="Current Location" name="currentLocation" required><br style="line-height: 50px">
+                <input type="text" placeholder="Current Position" name="currentPosition" required><br style="line-height: 50px">
+                <input type="text" placeholder="Current Company" name="CurrentCompany" required><br style="line-height: 50px">
+                <input type="text" placeholder="Salary Expectation" name="salaryExpectation" required><br style="line-height: 50px">
+                <input type="text" placeholder="Commitment Full/Part Time" name="commitment" required><br style="line-height: 50px">
+                <input type="text" placeholder="Notice Period" name="noticePeriod" required><br style="line-height: 50px">
+               
+                <label for="CV">Upload your latest CV</label><br style="line-height: 50px">
+                <input type="file" id="CV" name="CV" required><br style="line-height: 50px">
+               
+                <label for="pic">Upload your Profile Pic</label><br style="line-height: 50px">
+                <input type="file" id="pic" name="pic" required><br><br>
+
+                <button class="btn btn-primary" type="submit" style="width: 200px;height: auto;">Create Profile</button>
+            </form>
+
+        </div>
+
+    </section>
+</body>
+
+</html>

@@ -14,7 +14,8 @@ var hbs = require('express-handlebars')
 var app = express();
 var db = require('./config/connections');
 var session = require('express-session');
-var fileUpload = require('express-fileupload')
+var fileUpload = require('express-fileupload');
+var fs = require('fs')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
