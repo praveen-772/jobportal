@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
     <link rel="stylesheet" href="/stylesheets/nostyle.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
     <section class="login p-5" style="text-align: center">
-        <div class="container"
-            style="color:black;border-color: blue;border:2px solid;border-radius: 40px ; width: 50%;height: 550px;padding: 5px;align-items: center">
+        <div class="container col-12"
+            style="color:black;border-color: blue;border:2px solid;border-radius: 40px ; width: max-content;height: auto;padding: 5px;align-items: center">
             <h2>Login to User Account</h2><br>
             <img src="/images/user.jpg" style="width: 150px;height: 100px;">
-            <h4>If you have an Account with us, please log in</h4>
+            <h5>If you have an Account with us, please log in</h5>
 
             <form action="/login" method="POST">
                 {{#if loginmsg}}
@@ -23,7 +25,7 @@
                 </b>
                 {{/if}}
                 <input type="email" placeholder="User Email ID *" name="userEmail" required><br><br>
-                <input type="password" placeholder="User Password *" name="emppwd" required><br><br>
+                <input type="password" placeholder="User Password *" name="userPwd" required><br><br>
                 <div>
                     <div>
                         <button type="submit" style="width: 120px;height: 30px;float: left">Login</button>
@@ -43,8 +45,11 @@
                 </div>
             </form>
         </div>
-        
+
     </section>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

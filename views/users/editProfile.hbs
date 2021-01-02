@@ -1,0 +1,44 @@
+<section class="login p-5" style="text-align: center">
+    <div class="container col-12"
+        style="color:black;border:1px solid;border-radius: 25px ; width: max-content; padding: 30px;align-items: center">
+        <h2>Edit User Profile</h2><br>
+
+        <form action="/editProfile/{{userDetails._id}}" method="POST" enctype="multipart/form-data">
+            <input type="text" placeholder="Nationality" value="{{userDetails.nationality}}" name="nationality"
+                required><br style="line-height: 50px">
+            <input type="text" placeholder="Date of Birth" value="{{userDetails.dob}}" name="dob" required><br
+                style="line-height: 50px">
+            <input type="text" placeholder="Highest Education" value="{{userDetails.qualification}}"
+                name="qualification" required><br style="line-height: 50px">
+            <input type="text" placeholder="Career Level" value="{{userDetails.careerLevel}}" name="careerLevel"
+                required><br style="line-height: 50px">
+            <input type="text" placeholder="Current Location" value="{{userDetails.currentLocation}}"
+                name="currentLocation" required><br style="line-height: 50px">
+            <input type="text" placeholder="Current Position" value="{{userDetails.currentPosition}}"
+                name="currentPosition" required><br style="line-height: 50px">
+            <input type="text" placeholder="Current Company" value="{{userDetails.CurrentCompany}}"
+                name="CurrentCompany" required><br style="line-height: 50px">
+            <input type="text" placeholder="Salary Expectation" value="{{userDetails.salaryExpectation}}"
+                name="salaryExpectation" required><br style="line-height: 50px">
+            <input type="text" placeholder="Commitment Full/Part Time" value="{{userDetails.commitment}}"
+                name="commitment" required><br style="line-height: 50px">
+            <input type="text" placeholder="Notice Period" value="{{userDetails.noticePeriod}}" name="noticePeriod"
+                required><br style="line-height: 50px">
+
+            <label for="CV">Updated CV</label><br style="line-height: 50px">
+            <input type="file" id="CV" name="CV" ><br style="line-height: 50px">
+
+            <img src="/images/user_profile_pic/{{userDetails._id}}.jpg" id="imgView" style="width: 50px;height:70px">
+            <label for="pic">Change Profile Pic</label><br style="line-height: 50px">
+            <input type="file" id="pic" name="pic" onchange="viewImage(event)" required><br><br>
+
+            <button class="btn btn-primary" type="submit" style="width: 200px;height: auto;">Update Profile</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    function viewImage(event) {
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>

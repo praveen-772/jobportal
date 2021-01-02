@@ -1,5 +1,6 @@
 body{
     padding: 0%;
+    margin: 10px;
     background-color: #0384fc;
     background-image: url('https://equitystaffing.com/uploads/hero/Job-Seekers-Header3.jpg');
     background-repeat: no-repeat;
@@ -7,9 +8,10 @@ body{
 }
 
 .navbar{
-    padding: 0%;
+    padding:0px;
+    margin-top: 0%;
     font-size: 25px;
-    position: fixed;
+    position: sticky;
     top: 0%;
     width: 100%;
 }
@@ -21,4 +23,30 @@ body{
 .card-img-top{
     width: 100px;
     height: 100px;
+}
+
+div.content{
+    margin: 10px;
+    margin-top: 80px;
+    background-color: rgb(211, 208, 204);
+}
+
+#usertable{
+    background-color: rgb(211, 208, 204);
+}
+
+.jobDetails{
+    background-color: rgb(211, 208, 204);
+    width: 50%;
+    align-items: center;
+    float: none;
+    margin-left: 25%;
+    margin-top: 2%;
+}
+
+.jobcard :hover{
+    box-shadow: 8px 8px 8px blue;
+    transform: scale(1.1);
+    border:3px solid 8px 8px 8px blue;
+    transition:.5s;
 }

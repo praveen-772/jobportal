@@ -1,0 +1,15 @@
+<div class="jobDetails col-12 p-5" style="font-size: 20px;">
+    <img class="card-img-top" src='/images/{{job._id}}.jpg' alt="Job image">
+    <div class="card-body col-12 p-3" style="color: black">
+        <p class="card-title"><u> Job Title:</u>&emsp;&emsp;&emsp;&emsp;<b> {{job.jobTitle}} </b></p>
+        <p class="card-text"><u> Company Name:</u>&emsp;<b> {{job.compName}}</b></p>
+        <p class="card-text"><u> Schedule:</u>&emsp;&emsp;&emsp;&emsp;<b> {{job.timeSchedule}}</b></p>
+        <p class="card-text"><u> Posted on:</u>&emsp;&emsp;&emsp;<b> {{job.date}} </b></p>
+        <p class="card-text"><u> Location:</u>&emsp;&emsp;&emsp;&emsp;<b> {{job.compLocation}}</b></p>
+        <p class="card-text"><u> Skills:</u>&emsp;&emsp;&emsp;&emsp;&emsp;<b> {{job.skills}}</b></p>
+        <p class="card-text"><u> Experience:</u>&emsp;&emsp;&emsp;&emsp;<b> {{job.exp}}</b></p>
+        <p class="card-text"><u> Qualification:</u>&emsp;&emsp;<b> {{job.qualification}}</b></p>
+        <p class="card-text"><u> Description:</u>&emsp;&emsp;<b> {{job.desc}}</b></p><br>
+        <a href="/applyJob/{{job._id}}" class="btn btn-primary">Apply for this Job</a>
+    </div>
+</div>

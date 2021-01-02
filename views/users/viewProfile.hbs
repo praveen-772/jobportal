@@ -1,0 +1,43 @@
+<div class="content">    
+    <section>
+        <div class="container col-12 w-responsive" style="align-items: center">
+            <h3 style="color: red; ">{{updationinfo}}</h3>
+            <table class="table" id="usertable">
+                <thead>
+                    <tr>
+                        <th scope="col">Profile_PIC</th>
+                        <th scope="col">Full_Name</th>
+                        <th scope="col">Email_ID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Mobile_No</th>
+                        <th scope="col">Qualification</th>
+                        <th scope="col">Current Location</th>
+                        <th scope="col">Current Position</th>
+                        <th scope="col">Current Company</th>
+                        <th scope="col">Account Created</th>
+                        <th scope="col">Edit_Profile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each userDetails}}
+                    <tr>
+                        <th scope="row"><img style="width: 50px; height: 70px" src="/images/user_profile_pic/{{this._id}}.jpg" alt=""></th>
+                        <td>{{this.fullName}}</td>
+                        <td>{{this.userEmail}}</td>
+                        <td>{{this.userName}}</td>
+                        <td>{{this.userMobile}}</td>
+                        <td>{{this.qualification}}</td>            
+                        <td>{{this.currentLocation}}</td>
+                        <td>{{this.currentPosition}}</td>
+                        <td>{{this.CurrentCompany}}</td>
+                        <td>{{this.date}}</td>
+                        <td>
+                            <a href="/editProfile/{{this._id}}" class="btn btn-info">Edit Profile</a><br>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
