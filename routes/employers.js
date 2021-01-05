@@ -37,7 +37,7 @@ router.post('/',(req,res)=>{
       req.session.employer = response.employer
       req.session.loggedIn = true
       empname = req.session.employer
-      res.render('employers/Dashboard',empname)
+      res.redirect('/employers/Dashboard')
     }
     else{
       req.body.loginmsg = response.loginErr
@@ -152,6 +152,35 @@ router.post('/editJob/:id',verifyLogin,(req,res)=>{
     }
     res.redirect('/employers/postedJobs')
   })
+});
+
+router.get('/jobSeekers', verifyLogin, (req, res) => {
+  empname = req.session.employer.empname
+  employerHelpers.jobSeekers().then((jobseekers) => {
+    res.render('employers/jobSeekers', { empname, jobseekers })
+  })
+});
+
+router.get('/Dashboard',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname;
+  employerHelpers.jobseekerAppliedJobs().then((jobseekerDetails)=>{
+    res.render('employers/Dashboard',{empname,jobseekerDetails})
+  })
+});
+
+router.get('/jobDetails/:id',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname;
+  id = req.params.id
+  employerHelpers.jobDetails(id).then((jobdetails)=>{
+    res.render('employers/jobDetails',{empname,jobdetails})
+  })
+});
+
+router.get('/viewCV/:id',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname;
+  id = req.params.id;
+  res.render('employers/viewCV',{empname,id})
 })
+
 
 module.exports = router;

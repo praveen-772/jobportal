@@ -169,5 +169,23 @@ module.exports={
                 resolve()
             })
         })
+    },
+    jobSeekers: () => {
+        return new Promise(async (resolve, reject) => {
+            let jobseekers = await db.get().collection(collection.USER_COLLECTION).find({}).toArray();
+            resolve(jobseekers)
+        })
+    },
+    jobseekerAppliedJobs:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let jobseekerDetails = await db.get().collection(collection.USER_COLLECTION).find({}).toArray();
+            resolve(jobseekerDetails)
+        })
+    },
+    jobDetails:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let jobdetails = await db.get().collection(collection.JOB_COLLECTION).find({'_id':ObjectId(id)}).toArray();
+            resolve(jobdetails)
+        })
     }
 }

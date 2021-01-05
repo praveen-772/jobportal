@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   if (req.session.user) {
     user = req.session.user;
-    userHelpers.allJobs().then((Jobs) => {
+    userHelpers.allJobs(user).then((Jobs) => {
       res.render('users/Dashboard', { user, Jobs })
     })
   }
@@ -38,7 +38,7 @@ router.get('/login', (req, res) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   if (req.session.user) {
     user = req.session.user;
-    userHelpers.allJobs().then((Jobs) => {
+    userHelpers.allJobs(user).then((Jobs) => {
       res.render('users/Dashboard', { user, Jobs })
     })
   }
@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
       req.session.user = response.user;
       req.session.loggedIn = true;
       user = req.session.user;
-      userHelpers.allJobs().then((Jobs) => {
+      userHelpers.allJobs(user).then((Jobs) => {
         res.render('users/Dashboard', { user, Jobs })
       })
     }
@@ -156,8 +156,9 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/Dashboard', verifyLogin, (req, res) => {
-  userHelpers.allJobs().then((Jobs) => {
-    res.render('users/Dashboard', { user, Jobs })
+  userHelpers.allJobs(user).then((Jobs) => {
+    info = "Already applied";
+    res.render('users/Dashboard', { user, Jobs, info })
   })
 });
 
@@ -195,8 +196,13 @@ router.get('/jobDetails/:id',verifyLogin,(req,res)=>{
 
 router.get('/applyJob/:jobId',verifyLogin,(req,res)=>{
   jobId = req.params.jobId;
-  userHelpers.applyJob(jobId,user).then(()=>{
-    res.redirect('/Dashboard')
+  userHelpers.applyJob(jobId,user).then((info)=>{
+    console.log("+++++++++++++++++++");
+    // console.log(info);
+    console.log(user);
+    console.log("+++++++++++++++++++");
+    res.redirect('/users/Dashboard');
+    // res.render('users/Dashboard',{user})
   })
 })
 

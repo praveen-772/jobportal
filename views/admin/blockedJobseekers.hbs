@@ -12,14 +12,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each jobseeker}}
+                    {{#each jobseekers}}
                     <tr>
                         <th scope="row">{{this.fullName}}</th>
                         <td>{{this.userEmail}}</td>
                         <td>{{this.userMobile}}</td>
                         <td>
-                            <a href="blockJobseeker/{{this.fullName}}"class="btn btn-danger"
-                            onclick="return confirm('Are you sure to Block this Job Seeker : {{this.fullName}}')">Block</a>
+                            <a href="unblockJobseeker/{{this.fullName}}"class="btn btn-danger"
+                            onclick="return confirm('Are you sure to UnBlock this Job Seeker : {{this.fullName}}')">UnBlock</a>
                             <a href="deleteJobseeker/{{this.fullName}}"class="btn btn-danger"
                             onclick="return confirm('Are you sure to Delete this Job Seeker : {{this.fullName}} ')">Delete</a>
                         </td>

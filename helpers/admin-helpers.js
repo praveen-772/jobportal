@@ -3,7 +3,8 @@ var collection = require('../config/collections')
 var fs = require('fs');
 const bcrypt = require('bcrypt')
 const { ObjectId } = require('mongodb')
-const { response } = require('express')
+const { response } = require('express');
+const { resolve } = require('path');
 
 module.exports={
     createAccount:(adminData)=>{
@@ -108,6 +109,55 @@ module.exports={
                 await db.get().collection(collection.JOB_COLLECTION).updateMany({'empname':empname},{$set:{status:"unblocked"}}).then((response)=>{
                 resolve(response)
             })
+        })
+    },
+    jobseekers:()=>{
+        return new Promise(async(resolve,reject)=>{
+            status = "unblocked"
+            let jobseeker =await db.get().collection(collection.USER_COLLECTION).find({'status':status}).toArray();
+            resolve(jobseeker)
+        })
+    },
+    blockJobseeker:(name)=>{
+        return new Promise(async(resolve,reject)=>{
+            jobseekers = await db.get().collection(collection.USER_COLLECTION).updateOne({'fullName':name},{$set:{status:"blocked"}})
+            resolve(jobseekers)
+        })
+    },
+    unblockJobseeker:(name)=>{
+        return new Promise(async(resolve,reject)=>{
+            jobseekers = await db.get().collection(collection.USER_COLLECTION).updateOne({'fullName':name},{$set:{status:"unblocked"}})
+            resolve(jobseekers)
+        })
+    },
+    blockedJobseekers:()=>{
+        return new Promise(async(resolve,reject)=>{
+            status = "blocked"
+            let jobseekers =await db.get().collection(collection.USER_COLLECTION).find({'status':status}).toArray();
+            resolve(jobseekers)
+        })
+    },
+    deleteJobseeker:(name)=>{
+        return new Promise(async(resolve,reject)=>{
+            let jobseeker = await db.get().collection(collection.USER_COLLECTION).findOne({'fullName':name})
+            fs.unlink('./public/images/user_profile_pic/'+jobseeker._id+'.jpg',(err,done)=>{
+                if (err){
+                    console.log("!!! Jobseeker Profile Pic Not Found !!!");
+                }
+                else{
+                    console.log("!!! Jobseeker Profile Pic Deleted Successfully !!!");
+                }
+            });
+            fs.unlink('./public/jobSeekers_CVs/'+jobseeker._id+'.pdf',(err,done)=>{
+                if (err){
+                    console.log("!!! Jobseeker CV Not Found !!!");
+                }
+                else{
+                    console.log("!!! Jobseeker CV Deleted Successfully !!!");
+                }
+            })
+            db.get().collection(collection.USER_COLLECTION).deleteOne({'fullName':name});
+            resolve()
         })
     }
 }

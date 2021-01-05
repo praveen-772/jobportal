@@ -9,17 +9,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/admin/jobseekers">Job Seekers <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <div class="dropdown show">
+                        <a class="btn dropdown-toggle" href="/admin/employers" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a href="/admin/jobseekers">Job Seekers</a>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="btn dropdown-item" href="/admin/blockedJobseekers">Blocked Job Seekers</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <div class="dropdown show">
                         <a class="btn dropdown-toggle" href="/admin/employers" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <a href="/admin/employers">Employers</a>
+                            <a href="/admin/employers">Employers</a>
                         </a>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/admin/blockedEmployers">Blocked Employers</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/admin/blockedEmployers">Blocked Employers</a>
                         </div>
                     </div>
                 </li>

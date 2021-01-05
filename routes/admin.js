@@ -55,7 +55,10 @@ router.get('/employers',verifyLogin,(req,res)=>{
 });
 
 router.get('/jobseekers',verifyLogin,(req,res)=>{
-  res.render('admin/jobseekers',adminname)
+  adminHelpers.jobseekers().then((jobseeker)=>{
+    adminname = adminname.adminname;
+    res.render('admin/jobseekers',{adminname,jobseeker})
+  })
 });
 
 router.get('/status',verifyLogin,(req,res)=>{
@@ -84,6 +87,34 @@ router.get('/blockedEmployers',verifyLogin,(req,res)=>{
   adminHelpers.blockedEmployers().then((employers)=>{
     adminname = adminname.adminname;
     res.render('admin/blockedEmployers',{adminname,employers})
+  })
+});
+
+router.get('/blockJobseeker/:name',verifyLogin,(req,res)=>{
+  adminHelpers.blockJobseeker(req.params.name).then((jobseekers)=>{
+    adminname = adminname.adminname;
+    res.render('admin/blockedJobseekers',{adminname,jobseekers})
+  })
+});
+
+router.get('/unblockJobseeker/:name',verifyLogin,(req,res)=>{
+  adminHelpers.unblockJobseeker(req.params.name).then((jobseekers)=>{
+    adminname = adminname.adminname;
+    res.render('admin/unblockJobseeker',{adminname,jobseekers})
+  })
+});
+
+router.get('/blockedJobseekers',verifyLogin,(req,res)=>{
+  adminHelpers.blockedJobseekers().then((jobseekers)=>{
+    adminname = adminname.adminname;
+    res.render('admin/blockedJobseekers',{adminname,jobseekers})
+  })
+});
+
+router.get('/deleteJobseeker/:name',verifyLogin,(req,res)=>{
+  adminHelpers.deleteJobseeker(req.params.name).then(()=>{
+    adminname = adminname.adminname;
+    res.render('admin/jobseekers',{adminname})
   })
 })
 
