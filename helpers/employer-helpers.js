@@ -104,7 +104,7 @@ module.exports={
     otpVerified:(Data)=>{
         return new Promise(async(resolve,reject)=>{
         Data.password = await bcrypt.hash(Data.password,10)
-        db.get().collection(collection.EMPLOYER_COLLECTION).insertOne({empemail:Data.email,empname:Data.username,emppwd:Data.password,status:"unblocked"}).then((data)=>{
+        db.get().collection(collection.EMPLOYER_COLLECTION).insertOne({empemail:Data.email,empname:Data.username,emppwd:Data.password,empcompName:Data.empcompName,empcompLocation:Data.empcompLocation,empcompNum:Data.empcompNum,empcompWebsite:Data.empcompWebsite,status:"unblocked"}).then((data)=>{
             resolve(data.ops[0])
         })
         resolve()
@@ -186,6 +186,12 @@ module.exports={
         return new Promise(async(resolve,reject)=>{
             let jobdetails = await db.get().collection(collection.JOB_COLLECTION).find({'_id':ObjectId(id)}).toArray();
             resolve(jobdetails)
+        })
+    },
+    viewProfile:(empname)=>{
+        return new Promise(async(resolve,reject)=>{
+            let employer =await db.get().collection(collection.EMPLOYER_COLLECTION).findOne({empname:empname});
+            resolve(employer)
         })
     }
 }

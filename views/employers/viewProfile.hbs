@@ -1,0 +1,61 @@
+<div class="content">
+    <section>
+        <div class="container">
+            <h4>Employer's Profile</h4>
+            <table>
+                {{#if employer}}
+                <tr>
+                    <th>Company Name</th>
+                    <td>{{employer.empcompName}}</td>
+                </tr>
+                <tr>
+                    <th>Company Location</th>
+                    <td>{{employer.empcompLocation}}</td>
+                </tr>
+                <tr>
+                    <th>Contact Number</th>
+                    <td>{{employer.empcompNum}}</td>
+                </tr>
+                <tr>
+                    <th>Company Website</th>
+                    <td>{{employer.empcompWebsite}}</td>
+                </tr>
+                <tr>
+                    <th>Company Email</th>
+                    <td>{{employer.empemail}}</td>
+                </tr>
+                {{/if}}
+            </table>
+            <a href="" class="btn btn-primary" id="editprofile">Edit Profile</a>
+        </div>
+    </section>
+</div>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        background-color: rgb(247, 216, 160);
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    h4 {
+        text-align: center;
+        color: wheat;
+    }
+    #editprofile{
+        align-items: center;
+        margin-left: 45%;
+        margin-top: 2%;
+    }
+</style>

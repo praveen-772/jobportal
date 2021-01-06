@@ -1,7 +1,7 @@
 <section class="login p-5" style="text-align: center">
     <div class="container col-12"
         style="color:black;border:1px solid;border-radius: 25px ; width: max-content; padding: 30px;align-items: center">
-        <h2>Edit User Profile</h2><br>
+        <h2 style="color: wheat;">Edit User Profile</h2><br>
 
         <form action="/editProfile/{{userDetails._id}}" method="POST" enctype="multipart/form-data">
             <input type="text" placeholder="Nationality" value="{{userDetails.nationality}}" name="nationality"

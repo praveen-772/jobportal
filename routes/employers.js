@@ -55,6 +55,10 @@ router.post('/empSignup',(req,res)=>{
   req.session.email = req.body.empemail
   req.session.username = req.body.empname
   req.session.password = req.body.emppwd
+  req.session.empcompName = req.body.empcompName
+  req.session.empcompLocation = req.body.empcompLocation
+  req.session.empcompNum = req.body.empcompNum
+  req.session.empcompWebsite = req.body.empcompWebsite
   employerHelpers.createAccount(req.body).then((response)=>{
     if((req.body.info)==="Employer Account Already Exists"){
       res.render('employers/login',{loginmsg:req.body.info});
@@ -180,6 +184,14 @@ router.get('/viewCV/:id',verifyLogin,(req,res)=>{
   empname = req.session.employer.empname;
   id = req.params.id;
   res.render('employers/viewCV',{empname,id})
+});
+
+router.get('/viewProfile',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname;
+  employerHelpers.viewProfile(empname).then((employer)=>{
+    console.log(employer);
+    res.render('employers/viewProfile',{empname,employer})
+  })
 })
 
 
