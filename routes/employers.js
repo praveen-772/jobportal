@@ -189,8 +189,22 @@ router.get('/viewCV/:id',verifyLogin,(req,res)=>{
 router.get('/viewProfile',verifyLogin,(req,res)=>{
   empname = req.session.employer.empname;
   employerHelpers.viewProfile(empname).then((employer)=>{
-    console.log(employer);
     res.render('employers/viewProfile',{empname,employer})
+  })
+});
+
+router.get('/editProfile/:name',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname;
+  employerHelpers.editProfile(req.params.name).then((empDetails)=>{
+    res.render('employers/editProfile',{empname,empDetails})
+  })
+});
+
+router.post('/editProfile',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname;
+  employerHelpers.updateProfile(empname,req.body).then((empname)=>{
+    req.session.employer.empname = empname
+    res.redirect('/employers/viewProfile')
   })
 })
 

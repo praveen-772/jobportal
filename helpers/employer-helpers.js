@@ -193,5 +193,29 @@ module.exports={
             let employer =await db.get().collection(collection.EMPLOYER_COLLECTION).findOne({empname:empname});
             resolve(employer)
         })
+    },
+    editProfile:(empname)=>{
+        return new Promise(async(resolve,reject)=>{
+            let empDetails = await db.get().collection(collection.EMPLOYER_COLLECTION).findOne({empname:empname});
+            resolve(empDetails)
+        })
+    },
+    updateProfile:(empname,empDetails)=>{
+        return new Promise(async(resolve,reject)=>{
+            empDetails.emppwd = await bcrypt.hash(empDetails.emppwd,10)
+            await db.get().collection(collection.EMPLOYER_COLLECTION).updateOne({empname:empname},
+                {
+                    $set:{
+                        empname:empDetails.empname,
+                        emppwd:empDetails.emppwd,
+                        empcompName:empDetails.empcompName,
+                        empcompLocation:empDetails.empcompLocation,
+                        empcompNum:empDetails.empcompNum,
+                        empcompWebsite:empDetails.empcompWebsite
+                    }
+                }).then(()=>{
+                    resolve(empDetails.empname)
+                })
+        })
     }
 }

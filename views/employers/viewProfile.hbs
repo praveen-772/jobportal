@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <th>Company Website</th>
-                    <td>{{employer.empcompWebsite}}</td>
+                    <td><a href="{{employer.empcompWebsite}}" target="_blank" style="color: black"><u>{{employer.empcompWebsite}}</u></a></td>
                 </tr>
                 <tr>
                     <th>Company Email</th>
@@ -26,7 +26,7 @@
                 </tr>
                 {{/if}}
             </table>
-            <a href="" class="btn btn-primary" id="editprofile">Edit Profile</a>
+            <a href="/employers/editProfile/{{employer.empname}}" class="btn btn-primary" id="editprofile">Edit Profile</a>
         </div>
     </section>
 </div>

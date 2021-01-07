@@ -1,0 +1,23 @@
+<div class="content">
+    <section>
+        <div class="container"
+            style="color: wheat;border:1px solid;border-radius: 25px ; width: max-content; padding: 30px;align-items: center;margin-top: 50px;">
+            <h2>Update <u><i>{{empname}}</i></u>'s Profile</h2><br>
+            <form action="/employers/editProfile" method="POST">
+                <input type="text" placeholder="Employer Username" name="empname" value="{{empDetails.empname}}"><br><br>
+                <input type="password" placeholder="Employer Password" name="emppwd" required><br><br>
+                <input type="text" placeholder="Company Name" name="empcompName" value="{{empDetails.empcompName}}"><br><br>
+                <input type="text" placeholder="Company Location" name="empcompLocation" value="{{empDetails.empcompLocation}}"><br><br>
+                <input type="text" placeholder="Contact No" name="empcompNum" value="{{empDetails.empcompNum}}"><br><br>
+                <input type="text" placeholder="Company website" name="empcompWebsite" value="{{empDetails.empcompWebsite}}"><br><br>
+                <button type="submit" style="width: 150px;height: 30px;margin-left:70px">Update Profile</button>
+            </form>
+        </div>
+    </section>
+</div>
+
+<style>
+    input{
+        margin-left: 40px;
+    }
+</style>
