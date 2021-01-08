@@ -167,8 +167,8 @@ router.get('/jobSeekers', verifyLogin, (req, res) => {
 
 router.get('/Dashboard',verifyLogin,(req,res)=>{
   empname = req.session.employer.empname;
-  employerHelpers.jobseekerAppliedJobs().then((jobseekerDetails)=>{
-    res.render('employers/Dashboard',{empname,jobseekerDetails})
+  employerHelpers.jobseekerAppliedJobs().then((jobseekerAppliedJobs)=>{
+    res.render('employers/Dashboard',{empname,jobseekerAppliedJobs})
   })
 });
 
@@ -205,6 +205,14 @@ router.post('/editProfile',verifyLogin,(req,res)=>{
   employerHelpers.updateProfile(empname,req.body).then((empname)=>{
     req.session.employer.empname = empname
     res.redirect('/employers/viewProfile')
+  })
+});
+
+router.get('/viewAppliedJobs/:id',verifyLogin,(req,res)=>{
+  empname = req.session.employer.empname;
+  employerHelpers.viewAppliedJobs(req.params.id).then((viewAppliedJobs)=>{
+    console.log(viewAppliedJobs);
+    res.render('employers/viewAppliedJobs',{empname,viewAppliedJobs})
   })
 })
 

@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each jobseekerDetails}}
+                    {{#each jobseekerAppliedJobs}}
                     <tr>
                         <th scope="row">{{this.fullName}}</th>
                         <td>{{this.careerLevel}}</td>
@@ -24,7 +24,7 @@
                         <td>{{this.CurrentCompany}}</td>
                         <td>{{this.salaryExpectation}}</td>
                         <td><a href="/employers/viewCV/{{this._id}}" class="btn btn-primary"><b>View CV</b></a></td>
-                        <td><a href="/employers/jobDetails/{{this.appliedjobId}}" style="color: black"><b>{{this.appliedjobId}}</b></a></td>
+                        <td><a href="/employers/viewAppliedJobs/{{this._id}}" class="btn btn-primary"><b>View Applied Jobs</b></a></td>
                     </tr>
                     {{/each}}
                 </tbody>

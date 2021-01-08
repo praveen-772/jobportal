@@ -1,14 +1,15 @@
 <section>
     <div class="container-fluid mt-5 ml-5 pl-5">
+        {{#if info}}
+            <b><h4 style="color:red; text-align: center">{{info}}</h4></b>
+        {{/if}} <br>
         <div class="row">
             {{#each Jobs}}
             <div class="col-md-3 col-xs-12 m-4 jobcard">
                 <a href="/jobDetails/{{this._id}}">
                     <div class="card container" style="width: 20rem; height: 28rem; padding: 15px;">
 
-                        {{#if info}}
-                            <b><h4 class="card" style="color:red; text-align: right">{{info}}</h4></b>
-                            {{/if}} <br>
+                        
 
                         <img class="card-img-top" src='images/{{this._id}}.jpg' alt="Emp image">
                         <div class="card-body">

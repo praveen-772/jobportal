@@ -22,8 +22,8 @@ module.exports = {
                 console.log(users.appliedjobId[0]);
                 console.log(jobs.length);
                 console.log(users.appliedjobId.length);
-                
-             
+
+
                 // for (i = 0; i < jobs.length; i++) {
                 //     for (j = 0; j < users.appliedjobId.length; j++) {
                 //         if (ObjectId(jobs[i]._id) === ObjectId(users.appliedjobId[j])) {
@@ -165,13 +165,14 @@ module.exports = {
             let appliedJobs = await db.get().collection(collection.USER_COLLECTION).findOne({ 'fullName': user });
             console.log(appliedJobs);
             let info = null
-            notapplied = true;
+            let notapplied = true
             let jobLength = appliedJobs.appliedjobId.length;
             for (i = 0; i < jobLength; i++) {
                 if ((appliedJobs.appliedjobId[i]) == jobId) {
-                    info = "This Job already applied"
+                    info = "!!! Sorry !!! This Job you already applied... "
                     notapplied = false;
                     resolve(info);
+                    break;
                 }
                 else {
                     notapplied = true;
@@ -181,19 +182,39 @@ module.exports = {
                 db.get().collection(collection.USER_COLLECTION).updateOne({ 'fullName': user },
                     {
                         $push: {
-                            appliedjobId: ObjectId(jobId)
+                            appliedjobId: jobId
                         }
                     }).then(() => {
-                        info = "Your profile forwarded to employer"
+                        info = "Your profile forwarded to Employer"
+                        notapplied = null
                         resolve(info)
+                        return;
                     })
             }
         })
+
     },
-    viewJob:()=>{
-        return new Promise(async(resolve,reject)=>{
-            let jobs = await db.get().collection(collection.JOB_COLLECTION).find({status:"unblocked"}).toArray();
+    viewJob: () => {
+        return new Promise(async (resolve, reject) => {
+            let jobs = await db.get().collection(collection.JOB_COLLECTION).find({ status: "unblocked" }).toArray();
             resolve(jobs)
+        })
+    },
+    viewAppliedJobs: (name) => {
+        return new Promise(async (resolve, reject) => {
+            let idArray = []
+            let jobDetails = []
+            let viewAppliedJobs = await db.get().collection(collection.USER_COLLECTION).findOne({ fullName: name });
+            AppliedJobLength = viewAppliedJobs.appliedjobId.length;
+            for (i = 0; i < AppliedJobLength; i++) {
+                id = viewAppliedJobs.appliedjobId[i];
+                idArray.push(id)
+            }
+            for (j = 0; j < idArray.length; j++) {
+                jobid = idArray[j];
+                jobDetails.push(await db.get().collection(collection.JOB_COLLECTION).findOne({ _id: ObjectId(jobid) }));
+            }
+            resolve(jobDetails);
         })
     }
 }

@@ -178,8 +178,8 @@ module.exports={
     },
     jobseekerAppliedJobs:()=>{
         return new Promise(async(resolve,reject)=>{
-            let jobseekerDetails = await db.get().collection(collection.USER_COLLECTION).find({}).toArray();
-            resolve(jobseekerDetails)
+            let jobseekerAppliedJobs = await db.get().collection(collection.USER_COLLECTION).find({}).toArray();
+            resolve(jobseekerAppliedJobs)
         })
     },
     jobDetails:(id)=>{
@@ -216,6 +216,23 @@ module.exports={
                 }).then(()=>{
                     resolve(empDetails.empname)
                 })
+        })
+    },
+    viewAppliedJobs:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let idArray = []
+            let jobDetails = []
+            let viewAppliedJobs = await db.get().collection(collection.USER_COLLECTION).findOne({'_id':ObjectId(id)});
+            AppliedJobLength = viewAppliedJobs.appliedjobId.length;
+            for(i=0;i<AppliedJobLength;i++){
+                id = viewAppliedJobs.appliedjobId[i];
+                idArray.push(id)
+            }
+            for(j=0;j<idArray.length;j++){
+                jobid = idArray[j];
+                jobDetails.push(await db.get().collection(collection.JOB_COLLECTION).findOne({_id:ObjectId(jobid)}));
+            }
+            resolve(jobDetails);
         })
     }
 }

@@ -157,8 +157,7 @@ router.get('/logout', (req, res) => {
 
 router.get('/Dashboard', verifyLogin, (req, res) => {
   userHelpers.allJobs(user).then((Jobs) => {
-    info = "Already applied";
-    res.render('users/Dashboard', { user, Jobs, info })
+    res.render('users/Dashboard', { user, Jobs})
   })
 });
 
@@ -197,18 +196,21 @@ router.get('/jobDetails/:id',verifyLogin,(req,res)=>{
 router.get('/applyJob/:jobId',verifyLogin,(req,res)=>{
   jobId = req.params.jobId;
   userHelpers.applyJob(jobId,user).then((info)=>{
-    console.log("+++++++++++++++++++");
-    // console.log(info);
-    console.log(user);
-    console.log("+++++++++++++++++++");
-    res.redirect('/users/Dashboard');
-    // res.render('users/Dashboard',{user})
+    res.render('users/Dashboard',{user,info})
+    info = null;
   })
 });
 
 router.get('/findJob',verifyLogin,(req,res)=>{
   userHelpers.viewJob().then((jobs)=>{
     res.render('users/findJob',{user,jobs})
+  })
+});
+
+router.get('/viewAppliedJobs/:name',verifyLogin,(req,res)=>{
+  userHelpers.viewAppliedJobs(req.params.name).then((viewAppliedJobs)=>{
+    console.log(viewAppliedJobs);
+    res.render('employers/viewAppliedJobs',{user,viewAppliedJobs})
   })
 })
 

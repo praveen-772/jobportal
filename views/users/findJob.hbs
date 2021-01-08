@@ -14,10 +14,12 @@
                         <th scope="col">Experience</th>
                         <th scope="col">Schedule</th>
                         <th scope="col">Posted on</th>
+                        <th scope="col">Apply this job</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each jobs}}
+                    
                     <tr>
                         <th scope="row"><img style="width: 70px; height: 70px" src="/images/{{this._id}}.jpg" alt=""></th>
                         <td>{{this.compName}}</td>
@@ -26,9 +28,9 @@
                         <td>{{this.skills}}</td>
                         <td>{{this.exp}}</td>            
                         <td>{{this.timeSchedule}}</td>
-                        <td>{{this.date}}</td>
-                        
-                    </tr>
+                        <td>{{this.date}}</td>                        
+                        <td><a class="btn btn-primary" href="/jobDetails/{{this._id}}">Apply Now</a></td>
+                    </tr>      
                     {{/each}}
                 </tbody>
             </table>
