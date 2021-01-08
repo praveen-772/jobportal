@@ -1,0 +1,107 @@
+<div class="content">    
+    <section>
+        <div class="container col-12 w-responsive" style="align-items: center">
+             <input type="text" id="jobTitle" onkeyup="jobTiileFunction()" placeholder="Search Job by Job Title ...">
+             <input type="text" id="jobLocation" onkeyup="jobLocationFunction()" placeholder="Search Job by Location ...">
+            <table class="table table-hover" id="findjob">
+                <thead>
+                    <tr>
+                        <th scope="col">Company Logo</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Job Title</th>
+                        <th scope="col">Skills</th>
+                        <th scope="col">Experience</th>
+                        <th scope="col">Schedule</th>
+                        <th scope="col">Posted on</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each jobs}}
+                    <tr>
+                        <th scope="row"><img style="width: 70px; height: 70px" src="/images/{{this._id}}.jpg" alt=""></th>
+                        <td>{{this.compName}}</td>
+                        <td>{{this.compLocation}}</td>
+                        <td>{{this.jobTitle}}</td>
+                        <td>{{this.skills}}</td>
+                        <td>{{this.exp}}</td>            
+                        <td>{{this.timeSchedule}}</td>
+                        <td>{{this.date}}</td>
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<style>
+    #jobTitle{
+        margin-left: 100px;
+        border: 2px solid green;
+        width: 30%;
+        margin-top: 15px;
+    }
+    #jobLocation{
+        margin-left: 100px;
+        border: 2px solid green;
+        width: 30%;
+        margin-top: 15px;
+    }
+</style>
+
+<script>
+function jobTiileFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("jobTitle");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("findjob");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+<script>
+function jobLocationFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("jobLocation");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("findjob");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+{{!-- Data Tables
+<script>
+$(function () {
+    $('#findjob').DataTable();
+} );
+</script> --}}

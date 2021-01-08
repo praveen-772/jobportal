@@ -204,6 +204,12 @@ router.get('/applyJob/:jobId',verifyLogin,(req,res)=>{
     res.redirect('/users/Dashboard');
     // res.render('users/Dashboard',{user})
   })
+});
+
+router.get('/findJob',verifyLogin,(req,res)=>{
+  userHelpers.viewJob().then((jobs)=>{
+    res.render('users/findJob',{user,jobs})
+  })
 })
 
 module.exports = router;

@@ -189,5 +189,11 @@ module.exports = {
                     })
             }
         })
+    },
+    viewJob:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let jobs = await db.get().collection(collection.JOB_COLLECTION).find({status:"unblocked"}).toArray();
+            resolve(jobs)
+        })
     }
 }
