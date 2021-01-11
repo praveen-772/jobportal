@@ -177,8 +177,12 @@ router.get('/editProfile/:id', verifyLogin, (req, res) => {
 router.post('/editProfile/:id',verifyLogin,(req,res)=>{
   id = req.params.id;
   userDetails = req.body;
+  profileCV = req.files.CV;
   profilePic = req.files.pic;
   userHelpers.updateProfile(id,userDetails).then(()=>{
+    if(profileCV){
+      profileCV.mv('./public/jobSeekers_CVs/'+id+'.pdf')
+    }
     if(profilePic){
       profilePic.mv('./public/images/user_profile_pic/'+id+'.jpg')
     }

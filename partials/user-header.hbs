@@ -14,38 +14,44 @@
     }
   </script>
   <link rel="stylesheet" href="/stylesheets/userstyle.css" type="text/css">
-  <nav class="navbar navbar-expand-lg #0384fc navbar-dark">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/Dashboard">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/findJob">Find Job</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/viewAppliedJobs/{{user}}">View Applied Jobs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About Us</a>
-      </li>
-    </ul>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        {{# if user}}
-        {{user}}
-        {{else}}
-        Account
-        {{/if}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        {{# if user}}
-        <a class="dropdown-item" href="/viewProfile">View Profile</a>
-        <a class="dropdown-item" href="/logout">Logout</a>
-        {{else}}
-        <a class="dropdown-item" href="/login">Login</a>
-        {{/if}}
-      </div>
+  <nav class="navbar navbar-expand-md #0384fc navbar-dark">
+    <button class="navbar-toggler ml-auto " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/Dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/findJob">Find Job</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/viewAppliedJobs/{{user}}">View Applied Jobs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <div class="dropdown ml-auto">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{# if user}}
+            {{user}}
+            {{else}}
+            Account
+            {{/if}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {{# if user}}
+            <a class="dropdown-item" href="/viewProfile">View Profile</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
+            {{else}}
+            <a class="dropdown-item" href="/login">Login</a>
+            {{/if}}
+          </div>
+        </div>
+      </ul>
     </div>
   </nav>
 
@@ -55,4 +61,8 @@
   </head>
 </header>
 
-
+<style>
+  .nav-item {
+    margin-left: auto;
+  }
+</style>

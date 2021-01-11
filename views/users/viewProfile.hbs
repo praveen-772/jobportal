@@ -1,4 +1,4 @@
-<div class="content">    
+<div class="content">
     <section>
         <div class="container col-12 w-responsive" style="align-items: center">
             <h3 style="color: red; ">{{updationinfo}}</h3>
@@ -21,12 +21,13 @@
                 <tbody>
                     {{#each userDetails}}
                     <tr>
-                        <th scope="row"><img style="width: 50px; height: 70px" src="/images/user_profile_pic/{{this._id}}.jpg" alt=""></th>
+                        <th scope="row"><img style="width: 50px; height: 70px"
+                                src="/images/user_profile_pic/{{this._id}}.jpg" alt=""></th>
                         <td>{{this.fullName}}</td>
                         <td>{{this.userEmail}}</td>
                         <td>{{this.userName}}</td>
                         <td>{{this.userMobile}}</td>
-                        <td>{{this.qualification}}</td>            
+                        <td>{{this.qualification}}</td>
                         <td>{{this.currentLocation}}</td>
                         <td>{{this.currentPosition}}</td>
                         <td>{{this.CurrentCompany}}</td>
@@ -38,6 +39,12 @@
                     {{/each}}
                 </tbody>
             </table>
+        </div>
+        <div class="col-12">
+            {{#each userDetails}}
+            <embed src="/jobSeekers_CVs/{{this._id}}.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"
+                frameBorder="0" scrolling="auto" height="1000" width="105%"></embed>
+            {{/each}}
         </div>
     </section>
 </div>
