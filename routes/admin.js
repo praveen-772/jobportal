@@ -116,6 +116,13 @@ router.get('/deleteJobseeker/:name',verifyLogin,(req,res)=>{
     adminname = adminname.adminname;
     res.render('admin/jobseekers',{adminname})
   })
+});
+
+router.get('/Dashboard',verifyLogin,(req,res)=>{
+  adminname = adminname.adminname;
+  adminHelpers.jobseekerandemployer().then(([jobseekers,employers])=>{
+    res.render('admin/Dashboard',{adminname,jobseekers,employers})
+  })
 })
 
 module.exports = router;

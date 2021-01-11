@@ -159,5 +159,12 @@ module.exports={
             db.get().collection(collection.USER_COLLECTION).deleteOne({'fullName':name});
             resolve()
         })
+    },
+    jobseekerandemployer:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let jobseekers = await db.get().collection(collection.USER_COLLECTION).find({}).toArray();
+            let employers = await db.get().collection(collection.EMPLOYER_COLLECTION).find({}).toArray();
+            resolve([jobseekers,employers]);
+        })
     }
 }

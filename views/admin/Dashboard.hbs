@@ -1,4 +1,62 @@
 <div class="content">
-<h1>In Dashboard Admin can view the details about job seekers and employers
-</h1>
+    <section>
+        <div class="container mt-3">
+            <h3 style="text-align: center"> Jobseeker's Details </h3>
+            <table class="table" id="usertable" style="color: wheat">
+                <thead>
+                    <tr>
+                        <th scope="col">Profile_PIC</th>
+                        <th scope="col">Full_Name</th>
+                        <th scope="col">Email_ID</th>
+                        <th scope="col">Mobile_No</th>
+                        <th scope="col">Qualification</th>
+                        <th scope="col">Current Location</th>
+                        <th scope="col">Current Position</th>
+                        <th scope="col">Current Company</th>
+                        <th scope="col">Created on</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each jobseekers}}
+                    <tr>
+                        <th scope="row"><img style="width: 50px; height: 70px" src="/images/user_profile_pic/{{this._id}}.jpg" alt=""></th>
+                        <td>{{this.fullName}}</td>
+                        <td><a href="mailto:{{this.userEmail}}">{{this.userEmail}}</a></td>
+                        <td><a href="tel:{{this.userMobile}}">{{this.userMobile}}</a></td>
+                        <td>{{this.qualification}}</td>            
+                        <td>{{this.currentLocation}}</td>
+                        <td>{{this.currentPosition}}</td>
+                        <td>{{this.CurrentCompany}}</td>
+                        <td>{{this.date}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="container mt-5">
+            <h3 style="text-align: center"> Employer's Details </h3>
+            <table class="table" id="usertable" style="color: wheat">
+                <thead>
+                    <tr>
+                        <th scope="col">Company_Name</th>
+                        <th scope="col">Email_ID</th>
+                        <th scope="col">Location</th>                        
+                        <th scope="col">Contact_No</th>
+                        <th scope="col">website</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each employers}}
+                    <tr>
+                        <td>{{this.empcompName}}</td>
+                        <td><a href="mailto:{{this.empemail}}">{{this.empemail}}</a></td>
+                        <td>{{this.empcompLocation}}</td>                        
+                        <td><a href="tel:{{this.empcompNum}}">{{this.empcompNum}}</a></td>
+                        <td>{{this.empcompWebsite}}</td>            
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </section>
 </div>
