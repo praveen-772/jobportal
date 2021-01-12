@@ -52,7 +52,7 @@
                         <td><a href="mailto:{{this.empemail}}">{{this.empemail}}</a></td>
                         <td>{{this.empcompLocation}}</td>                        
                         <td><a href="tel:{{this.empcompNum}}">{{this.empcompNum}}</a></td>
-                        <td>{{this.empcompWebsite}}</td>            
+                        <td><a href="{{this.empcompWebsite}}" target="_blank"> {{this.empcompWebsite}} </a></td>            
                     </tr>
                     {{/each}}
                 </tbody>
@@ -60,3 +60,11 @@
         </div>
     </section>
 </div>
+
+<style>
+    a{
+        color: black;
+        text-decoration: underline;
+        font-style:italic
+    }
+</style>

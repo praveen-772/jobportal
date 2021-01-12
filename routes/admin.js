@@ -33,7 +33,7 @@ router.post('/',(req,res)=>{
     if(response.status){
       req.session.admin = response.admin
       req.session.loggedIn = true
-      res.render('admin/Dashboard',req.body)
+      res.redirect('/admin/Dashboard')
     }
     else{
       req.session.loginErr = response.loginErr;
