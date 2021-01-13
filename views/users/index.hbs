@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Portal</title>
-  <script type="text/javascript">
+  {{!-- <script type="text/javascript">
     function display_c() {
       var refresh = 1000; // Refresh rate in milli seconds
       mytime = setTimeout('display_ct()', refresh)
@@ -15,7 +15,7 @@
       document.getElementById('ct').innerHTML = x;
       tt = display_c();
     }
-  </script>
+  </script> --}}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,7 +28,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/Dashboard">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/findJob">Find Job</a>
@@ -47,9 +47,9 @@
     </div>
   </nav>
 
-<body onload=display_ct(); style="color: white">
+{{!-- <body onload=display_ct(); style="color: white">
   <span id='ct'></span>
-</body>
+</body> --}}
 </head>
 
 <body>
@@ -57,18 +57,15 @@
     <div class="container-fluid mt-5 col-12">
       <div class="row justify-content-center align-items-center">
         {{#each Jobs}}
-        <div class="col-md-3 col-xs-12 m-4">
-          <a href="/login">
-            <div class="card" style="width: 20rem; height: 30rem">
+        <div class="col-md-3 col-xs-12 m-4 jobcard">
+          <a href="/preLoginjobDetails/{{this._id}}">
+            <div class="card" style="width: 15rem; height: 20rem;padding: 5px">
               <img class="card-img-top" src='images/{{this._id}}.jpg' alt="Emp image">
               <div class="card-body">
                 <p class="card-title"><u> Job Title:</u> {{this.jobTitle}}</p>
                 <p class="card-text"><u> Company Name:</u> {{this.compName}}</p>
                 <p class="card-text"><u> Posted on:</u> {{this.date}}</p>
-                <p class="card-text"><u> Location:</u> {{this.compLocation}}</p>
-                <p class="card-text"><u> Skills:</u> {{this.skills}}</p>
-                <p class="card-text"><u> Description:</u> {{this.desc}}</p><br><br>
-                <button onclick="" class="btn btn-primary">Apply for this Job</button>
+                <p class="card-text"><u> Location:</u> {{this.compLocation}}</p>                
               </div>
             </div>
           </a>
@@ -88,13 +85,6 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
-  <script>
-    $(function () {
-      $('.example-popover').popover({
-        container: 'button'
-      })
-    })
-  </script>
 </body>
 <style>
   .nav-item {

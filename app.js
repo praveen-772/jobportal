@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyparser = require('body-parser');
 const nodemailer = require('nodemailer')
+var flash = require('express-flash-messages');
 
 var userRouter = require('./routes/user');
 var employerRouter = require('./routes/employers');
@@ -31,6 +32,7 @@ app.use(session({secret: "key",cookie: { maxAge:600000 }}));
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
 app.use(fileUpload());
+app.use(flash())
 
 db.connect((err)=>{
   if (err) 

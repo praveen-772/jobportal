@@ -216,6 +216,14 @@ router.get('/viewAppliedJobs/:name',verifyLogin,(req,res)=>{
     console.log(viewAppliedJobs);
     res.render('employers/viewAppliedJobs',{user,viewAppliedJobs})
   })
-})
+});
+
+router.get('/preLoginjobDetails/:id',(req,res)=>{
+  id = req.params.id;
+  userHelpers.findJob(id).then((job)=>{
+    console.log(job);
+    res.render('users/preLoginjobDetails',{job})
+  })
+});
 
 module.exports = router;

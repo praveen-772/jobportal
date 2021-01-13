@@ -7,16 +7,13 @@
             {{#each Jobs}}
             <div class="col-md-3 col-xs-12 m-4 jobcard">
                 <a href="/jobDetails/{{this._id}}">
-                    <div class="card container" style="width: 20rem; height: 28rem; padding: 15px;">                    
+                    <div class="card container" style="width: 15rem; height: 20rem; padding: 5px;">                    
                         <img class="card-img-top" src='images/{{this._id}}.jpg' alt="Emp image">
                         <div class="card-body">
                             <p class="card-title"><u> Job Title:</u> {{this.jobTitle}}</p>
                             <p class="card-text"><u> Company Name:</u> {{this.compName}}</p>
                             <p class="card-text"><u> Posted on:</u> {{this.date}}</p>
-                            <p class="card-text"><u> Location:</u> {{this.compLocation}}</p>
-                            <p class="card-text"><u> Skills:</u> {{this.skills}}</p>
-                            <p class="card-text"><u> Description:</u> {{this.desc}}</p><br>
-                            
+                            <p class="card-text"><u> Location:</u> {{this.compLocation}}</p>                        
                         </div>
                     </div>
                 </a>
