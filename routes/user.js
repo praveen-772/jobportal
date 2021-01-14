@@ -202,6 +202,7 @@ router.get('/applyJob/:jobId',verifyLogin,(req,res)=>{
   userHelpers.applyJob(jobId,user).then((info)=>{
     res.render('users/Dashboard',{user,info})
     info = null;
+  
   })
 });
 

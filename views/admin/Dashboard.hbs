@@ -21,8 +21,8 @@
                     <tr>
                         <th scope="row"><img style="width: 50px; height: 70px" src="/images/user_profile_pic/{{this._id}}.jpg" alt=""></th>
                         <td>{{this.fullName}}</td>
-                        <td><a href="mailto:{{this.userEmail}}">{{this.userEmail}}</a></td>
-                        <td><a href="tel:{{this.userMobile}}">{{this.userMobile}}</a></td>
+                        <td><a href="mailto:{{this.userEmail}}"><b>{{this.userEmail}}</b></a></td>
+                        <td><a href="tel:{{this.userMobile}}"><b>{{this.userMobile}}</b></a></td>
                         <td>{{this.qualification}}</td>            
                         <td>{{this.currentLocation}}</td>
                         <td>{{this.currentPosition}}</td>
@@ -49,10 +49,10 @@
                     {{#each employers}}
                     <tr>
                         <td>{{this.empcompName}}</td>
-                        <td><a href="mailto:{{this.empemail}}">{{this.empemail}}</a></td>
+                        <td><a href="mailto:{{this.empemail}}"><b>{{this.empemail}}</b></a></td>
                         <td>{{this.empcompLocation}}</td>                        
-                        <td><a href="tel:{{this.empcompNum}}">{{this.empcompNum}}</a></td>
-                        <td><a href="{{this.empcompWebsite}}" target="_blank"> {{this.empcompWebsite}} </a></td>            
+                        <td><a href="tel:{{this.empcompNum}}"><b>{{this.empcompNum}}</b></a></td>
+                        <td><a href="{{this.empcompWebsite}}" target="_blank"><b>{{this.empcompWebsite}}</b></a></td>            
                     </tr>
                     {{/each}}
                 </tbody>
@@ -64,7 +64,6 @@
 <style>
     a{
         color: black;
-        text-decoration: underline;
         font-style:italic
     }
 </style>
